@@ -1,0 +1,52 @@
+apiVersion: tekton.dev/v1beta1
+kind: PipelineRun
+metadata:
+  generateName: npm-
+  namespace: tekton-resources
+spec:
+  pipelineRef:
+    resolver: cluster
+    params:
+      - name: kind
+        value: pipeline
+      - name: name
+        value: npm-pipeline
+      - name: namespace
+        value: tekton-resources
+  params:
+  - name: dev-repo-url
+    value: git@github.com:andifg/react-pipeline-test-application.git
+  - name: dev-depl-url
+    value: git@github.com:andifg/react-pipeline-test-deployment.git
+  - name: context-path
+    value: /hello-world
+  - name: image-name
+    value: image-registry.openshift-image-registry.svc:5000/tekton-resources/counter
+  - name: yq-select
+    value: (.spec.template.spec.containers[] | select(.name == "my-container") .image)
+  - name: yq-target
+    value: react-pipeline-test-deployment/counter/deployment.yaml
+  - name: dockerfile
+    value: ./Containerfile
+  workspaces:
+  - name: ssh-creds
+    secret:
+      secretName: ssh-creds
+  - name: app-pvc
+    volumeClaimTemplate:
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 300Mi
+        volumeMode: Filesystem
+  - name: argo-pvc
+    volumeClaimTemplate:
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 300Mi
+        volumeMode: Filesystem
