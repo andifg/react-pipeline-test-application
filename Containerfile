@@ -1,4 +1,4 @@
-FROM node:19.4.0 as builder
+FROM docker.io/node:19.4.0 as builder
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 COPY package.json /usr/src/app
