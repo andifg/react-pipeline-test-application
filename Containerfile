@@ -7,4 +7,4 @@ COPY . /usr/src/app
 RUN npm run build
 
 FROM registry.access.redhat.com/rhscl/httpd-24-rhel7
-COPY --from=builder /usr/src/app/dist/* /var/www/html *
+COPY --from=builder /usr/src/app/dist/ /var/www/html/
