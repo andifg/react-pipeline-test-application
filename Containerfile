@@ -6,7 +6,5 @@ RUN npm install
 COPY . /usr/src/app
 RUN npm run build
 
-FROM docker.io/nginx:latest
-COPY --from=builder /usr/src/app/dist /usr/share/nginx/html
-EXPOSE 80
-RUN chown nginx.nginx /usr/share/nginx/html/ -R
+FROM registry.access.redhat.com/rhscl/httpd-24-rhel7
+COPY --from=builder /usr/src/app/dist/* /var/www/html *
