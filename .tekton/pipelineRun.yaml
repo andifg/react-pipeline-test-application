@@ -35,9 +35,11 @@ spec:
   - name: yq-select
     value: (.spec.template.spec.containers[] | select(.name == "my-container") .image)
   - name: yq-target
-    value: react-pipeline-test-deployment/counter/deployment.yaml
+    value: counter/deployment.yaml
   - name: dockerfile
     value: ./Containerfile
+  - name: target-branch
+    value: {{target_branch}}
   workspaces:
   - name: ssh-creds
     secret:
