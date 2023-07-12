@@ -13,3 +13,6 @@ for a React Stack:
 - [Working connection between K8s Cluster and Git Repository ](https://docs.openshift.com/container-platform/4.11/cicd/pipelines/using-pipelines-as-code.html)
 - Repository Resource in cluster
 - Referenced pipeliens need to be available in cluster
+
+
+
