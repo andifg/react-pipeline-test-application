@@ -40,6 +40,8 @@ spec:
     value: ./Containerfile
   - name: target-branch
     value: {{target_branch}}
+  - name: source-branch
+    value: {{source_branch}}
   workspaces:
   - name: ssh-creds
     secret:
@@ -62,3 +64,4 @@ spec:
           requests:
             storage: 300Mi
         volumeMode: Filesystem
+        
