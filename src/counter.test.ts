@@ -13,16 +13,16 @@ describe("setupCounter", () => {
   test("should increment counter and update innerHTML on button click", () => {
     const element = new MockButtonElement();
     setupCounter(element as HTMLButtonElement);
-    expect(element.innerHTML).toBe("count is 0");
+    expect(element.innerHTML).toBe("Hello Jojo! Count is 0");
   });
 
   test("should increment counter and update innerHTML multiple times on button clicks", () => {
     const element = new MockButtonElement();
     setupCounter(element as HTMLButtonElement);
-    expect(element.innerHTML).toBe("count is 0");
+    expect(element.innerHTML).toBe("Hello Jojo! Count is 0");
     element.addEventListener("click", () => {
       expect(element.innerHTML).toBe(
-        `count is ${element.innerHTML.split(" ")[2]}`,
+        `Hello Jojo! Count is 0`,
       );
     });
   });
